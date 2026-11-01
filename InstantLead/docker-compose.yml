@@ -1,0 +1,28 @@
+services:
+  instantlead:
+    build: .
+    image: instantlead:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    volumes:
+      - instantlead_data:/app/.tmp
+      - instantlead_logs:/app/logs
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import json,urllib.request; d=json.load(urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=4)); raise SystemExit(0 if d.get('ok') else 1)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  instantlead_data:
+  instantlead_logs:

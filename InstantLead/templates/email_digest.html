@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f4f6f7;font-family:Arial,Helvetica,sans-serif;color:#1c2833;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding:18px 0;background:#f4f6f7;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#ffffff;border:1px solid #d5dbdb;border-radius:8px;overflow:hidden;">
+        <tr><td style="background:{{ colors.primary }};color:#fff;padding:14px 18px;font-size:16px;font-weight:bold;">
+          {% if company.logo %}<img src="cid:companylogo" alt="{{ company.name }}" style="height:30px;vertical-align:middle;margin-right:8px;">{% endif %}
+          {{ company.name }} · Daily lead digest
+        </td></tr>
+        <tr><td style="padding:14px 18px 0;">
+          <div style="font-size:19px;font-weight:bold;color:{{ colors.primary }};">{{ stats.total }} leads on {{ digest_date }}</div>
+          <div style="font-size:12px;color:{{ colors.muted }};padding-top:3px;">Generated {{ generated_at }}</div>
+        </td></tr>
+        <tr><td style="padding:12px 18px 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:12px;">
+            <tr>
+              <td style="padding:7px;background:{{ colors.hot_soft }};border:1px solid #f5b7b1;border-radius:5px;text-align:center;"><strong style="font-size:17px;color:{{ colors.hot }};">{{ stats.hot }}</strong><br>HOT</td>
+              <td style="width:6px;"></td>
+              <td style="padding:7px;background:{{ colors.warm_soft }};border:1px solid #f9e79f;border-radius:5px;text-align:center;"><strong style="font-size:17px;color:{{ colors.warm }};">{{ stats.warm }}</strong><br>WARM</td>
+              <td style="width:6px;"></td>
+              <td style="padding:7px;background:{{ colors.cold_soft }};border:1px solid #aed6f1;border-radius:5px;text-align:center;"><strong style="font-size:17px;color:{{ colors.cold }};">{{ stats.cold }}</strong><br>COLD</td>
+              <td style="width:6px;"></td>
+              <td style="padding:7px;background:{{ colors.background }};border:1px solid {{ colors.border }};border-radius:5px;text-align:center;"><strong style="font-size:17px;color:{{ colors.primary }};">{{ stats.uncontacted_hot }}</strong><br>HOT OPEN</td>
+            </tr>
+          </table>
+        </td></tr>
+        <tr><td style="padding:12px 18px 0;font-size:12px;color:{{ colors.muted }};">
+          Meetings booked: <strong style="color:{{ colors.text }};">{{ stats.meetings }}</strong> ·
+          Average score: <strong style="color:{{ colors.text }};">{{ stats.avg_score }}</strong>
+        </td></tr>
+        <tr><td style="padding:12px 18px 0;">
+          <div style="font-size:12px;font-weight:bold;color:{{ colors.primary }};border-bottom:1px solid {{ colors.border }};padding-bottom:4px;">HOT leads — act first</div>
+          {% if hot %}
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:12px;">
+            {% for lead in hot %}
+            <tr>
+              <td style="padding:7px 0;border-bottom:1px solid #eef1f2;">
+                <strong>{{ lead.name }}</strong>
+                <span style="color:{{ colors.muted }};"> · {{ lead.phone }} · {{ lead.property_type }}</span><br>
+                <span style="color:{{ colors.muted }};font-size:11px;">{{ lead.location }} · {{ lead.budget }} · {{ lead.timeline }} · {{ lead.source }}</span>
+              </td>
+              <td align="right" style="padding:7px 0;border-bottom:1px solid #eef1f2;white-space:nowrap;">
+                <span style="display:inline-block;background:{{ colors.hot }};color:#fff;font-size:10px;font-weight:bold;padding:2px 7px;border-radius:9px;">{{ lead.score }}</span>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+          {% else %}<div style="padding:8px 0;font-size:12px;color:{{ colors.muted }};">No HOT leads today.</div>{% endif %}
+        </td></tr>
+        <tr><td style="padding:12px 18px 14px;font-size:11px;color:{{ colors.muted }};">
+          Full lead briefs and the COLD list are in the attached daily PDF.
+          {% if stats.uncontacted_hot %}<br><strong style="color:{{ colors.hot }};">{{ stats.uncontacted_hot }} HOT lead(s) still uncontacted — call now.</strong>{% endif %}
+        </td></tr>
+        <tr><td style="background:{{ colors.background }};border-top:1px solid {{ colors.border }};padding:9px 18px;font-size:10px;color:{{ colors.muted }};">
+          {{ company.name }} · {{ company.phone }} · {{ company.website }}<br>Confidential customer data.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

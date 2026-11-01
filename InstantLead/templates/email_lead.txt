@@ -1,0 +1,20 @@
+[{{ tier }}] New lead {{ name }} - {{ score }}/100
+
+Phone: {{ phone }}
+Email: {{ email }}
+Looking for: {{ property_type }}
+Location: {{ location }}
+Budget: {{ budget }}
+Timeline: {{ timeline }}
+Source: {{ source }}
+Received: {{ received_at }}
+Lead ID: {{ lead_id }}
+
+Why {{ tier }}: {{ reasons | join('; ') }}
+
+Next action: {{ next_action }}
+{% if links.meet %}Meet: {{ links.meet }}
+{% endif %}{% if links.sheet %}Sheet: {{ links.sheet }}
+{% endif %}Full brief attached as PDF.
+
+Confidential customer data. Share only with the assigned sales team.

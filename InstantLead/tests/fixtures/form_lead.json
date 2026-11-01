@@ -1,0 +1,15 @@
+{
+  "id": "FORM-1001",
+  "submitted_at": "2026-10-23T14:32:00+05:30",
+  "data": {
+    "name": "Rahul Sharma",
+    "phone": "+91 98765 43210",
+    "email": "rahul.sharma@example.com",
+    "property_type": "3BHK",
+    "location": "Powai, Mumbai",
+    "budget": "1.2-1.5 Cr",
+    "timeline": "Within 30 days",
+    "message": "Looking for a 3BHK in Powai. Ready to visit this weekend and can close quickly. Please call me.",
+    "consent": "yes"
+  }
+}

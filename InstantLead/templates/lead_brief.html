@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lead Brief {{ lead_id }}</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 13mm 13mm 16mm 13mm;
+      @bottom-left {
+        content: "Confidential · Lead {{ lead_id }}";
+        font-family: "{{ company.logo and 'DejaVu Sans' or 'DejaVu Sans' }}";
+        font-size: 7.5pt;
+        color: #7f8c8d;
+      }
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-size: 7.5pt;
+        color: #7f8c8d;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "DejaVu Sans", sans-serif;
+      color: {{ colors.text or '#1C2833' }};
+      font-size: 9.3pt;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid {{ colors.primary }}; padding-bottom: 9px; }
+    .brand img { height: 38px; max-width: 210px; }
+    .brand .fallback { font-size: 17pt; font-weight: bold; color: {{ colors.primary }}; }
+    .brand .tagline { font-size: 7.5pt; color: {{ colors.muted }}; margin-top: 3px; }
+    .company-meta { text-align: right; font-size: 7.6pt; color: {{ colors.muted }}; line-height: 1.55; }
+    .doc-title { display: flex; justify-content: space-between; align-items: flex-end; margin: 14px 0 10px; }
+    .doc-title h1 { font-size: 15pt; letter-spacing: 0.08em; margin: 0; color: {{ colors.primary }}; }
+    .doc-title .id { font-size: 7.8pt; color: {{ colors.muted }}; }
+    .banner { display: flex; justify-content: space-between; align-items: center; border-radius: 6px; padding: 10px 13px; color: #fff; background: {{ colors[ tier_class ] }}; }
+    .banner .tier { font-size: 17pt; font-weight: bold; letter-spacing: 0.08em; }
+    .banner .tier small { display: block; font-size: 7.5pt; font-weight: normal; letter-spacing: 0.04em; opacity: 0.9; }
+    .banner .score { font-size: 17pt; font-weight: bold; text-align: right; }
+    .banner .score small { display: block; font-size: 7.5pt; font-weight: normal; opacity: 0.9; }
+    .section { margin-top: 13px; }
+    .section h2 { font-size: 8.2pt; letter-spacing: 0.09em; text-transform: uppercase; color: {{ colors.primary }}; margin: 0 0 6px; border-bottom: 1px solid {{ colors.border }}; padding-bottom: 3px; }
+    table.facts { width: 100%; border-collapse: collapse; }
+    table.facts td { padding: 5px 6px; vertical-align: top; border-bottom: 1px solid #eef1f2; }
+    table.facts td.label { width: 21%; color: {{ colors.muted }}; font-size: 8pt; }
+    table.facts td.value { width: 29%; font-weight: bold; }
+    table.facts td.value.wide { width: 79%; }
+    .message { background: {{ colors.background }}; border-left: 3px solid {{ colors.accent }}; padding: 9px 11px; white-space: pre-wrap; font-size: 9pt; }
+    .next { background: {{ colors.primary_soft }}; border: 1px solid {{ colors.border }}; border-radius: 5px; padding: 9px 11px; }
+    .next strong { color: {{ colors.primary }}; }
+    .page-break { page-break-before: always; }
+    table.breakdown { width: 100%; border-collapse: collapse; margin-top: 4px; }
+    table.breakdown th { background: {{ colors.primary }}; color: #fff; font-size: 8pt; text-align: left; padding: 6px 7px; }
+    table.breakdown td { padding: 6px 7px; border-bottom: 1px solid {{ colors.border }}; font-size: 8.7pt; }
+    table.breakdown td.num { text-align: right; font-weight: bold; }
+    .bar { height: 6px; border-radius: 3px; background: #e5e8e8; overflow: hidden; width: 100%; }
+    .bar span { display: block; height: 6px; background: {{ colors.accent }}; }
+    ul.reasons { margin: 5px 0 0 16px; padding: 0; }
+    ul.reasons li { margin: 2px 0; font-size: 8.8pt; }
+    .actions { width: 100%; border-collapse: collapse; }
+    .actions td { width: 50%; padding: 5px 6px; border-bottom: 1px solid #eef1f2; font-size: 8.6pt; vertical-align: top; }
+    .actions .k { color: {{ colors.muted }}; font-size: 7.8pt; display: block; }
+    .pill { display: inline-block; border: 1px solid {{ colors.border }}; border-radius: 10px; padding: 1px 7px; font-size: 7.6pt; color: {{ colors.primary }}; text-decoration: none; margin: 2px 4px 2px 0; }
+    .footer-note { margin-top: 14px; border-top: 1px solid {{ colors.border }}; padding-top: 7px; font-size: 7.4pt; color: {{ colors.muted }}; }
+    .consent-yes { color: {{ colors.accent }}; font-weight: bold; }
+    .consent-no { color: {{ colors.warm }}; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      {% if company.logo %}
+        <img src="{{ company.logo }}" alt="{{ company.name }}">
+      {% else %}
+        <div class="fallback">{{ company.name }}</div>
+      {% endif %}
+      <div class="tagline">{{ company.tagline }}</div>
+    </div>
+    <div class="company-meta">
+      {{ company.phone }}<br>
+      {{ company.email }}<br>
+      {{ company.website }}<br>
+      {{ company.address }}
+    </div>
+  </div>
+
+  <div class="doc-title">
+    <h1>LEAD BRIEF</h1>
+    <div class="id">Lead ID {{ lead_id }}<br>Generated {{ generated_at }}</div>
+  </div>
+
+  <div class="banner">
+    <div class="tier">{{ tier }}<small>{{ next_action }}</small></div>
+    <div class="score">{{ score }}<small>out of 100</small></div>
+  </div>
+
+  <div class="section">
+    <h2>Lead snapshot</h2>
+    <table class="facts">
+      <tr>
+        <td class="label">Name</td><td class="value">{{ name }}</td>
+        <td class="label">Source</td><td class="value">{{ source }}</td>
+      </tr>
+      <tr>
+        <td class="label">Phone</td><td class="value">{{ phone }}</td>
+        <td class="label">Received</td><td class="value">{{ received_at }}</td>
+      </tr>
+      <tr>
+        <td class="label">Email</td><td class="value">{{ email }}</td>
+        <td class="label">Consent</td>
+        <td class="value"><span class="{{ 'consent-yes' if consent_flag else 'consent-no' }}">{{ consent }}</span></td>
+      </tr>
+      <tr>
+        <td class="label">Property</td><td class="value">{{ property_type }}</td>
+        <td class="label">Location</td><td class="value">{{ location }}</td>
+      </tr>
+      <tr>
+        <td class="label">Budget</td><td class="value">{{ budget }}</td>
+        <td class="label">Timeline</td><td class="value">{{ timeline }}</td>
+      </tr>
+      <tr>
+        <td class="label">Status</td><td class="value">{{ status }}</td>
+        <td class="label">Enquiries</td><td class="value">{{ touch_count }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Enquiry message (verbatim)</h2>
+    <div class="message">{{ message }}</div>
+  </div>
+
+  <div class="section">
+    <h2>Recommended next action</h2>
+    <div class="next">{{ next_action }}</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="section">
+    <h2>Why this lead scored {{ score }}/100</h2>
+    <table class="breakdown">
+      <thead>
+        <tr><th style="width:24%">Factor</th><th style="width:34%">Evidence</th><th style="width:21%">Points</th><th style="width:21%">Ratio</th></tr>
+      </thead>
+      <tbody>
+        {% for row in breakdown %}
+        <tr>
+          <td>{{ row.factor }}</td>
+          <td>{{ row.evidence }}</td>
+          <td class="num">{{ row.points }} / {{ row.max }}</td>
+          <td><div class="bar"><span style="width: {{ (100 * (row.points if row.points > 0 else 0) / (row.max if row.max else 1)) | round(0, 'floor') }}%"></span></div></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <ul class="reasons">
+      {% for reason in reasons %}<li>{{ reason }}</li>{% endfor %}
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Actions taken</h2>
+    <table class="actions">
+      <tr>
+        <td><span class="k">Google Sheet</span>{% if links.sheet %}<a class="pill" href="{{ links.sheet }}">Open lead row</a>{% else %}Pending{% endif %}</td>
+        <td><span class="k">Google Calendar / Meet</span>{% if links.meet %}{{ calendar_start }}<br><a class="pill" href="{{ links.meet }}">Join Meet</a>{% else %}No meeting booked{% endif %}</td>
+      </tr>
+      <tr>
+        <td><span class="k">Sales PDF</span>{% if links.pdf %}<a class="pill" href="{{ links.pdf }}">Open in Drive</a>{% else %}Pending upload to Drive{% endif %}</td>
+        <td><span class="k">Direct contact</span>
+          {% if links.call %}<a class="pill" href="{{ links.call }}">Call</a>{% endif %}
+          {% if links.whatsapp %}<a class="pill" href="{{ links.whatsapp }}">WhatsApp</a>{% endif %}
+          {% if links.email %}<a class="pill" href="{{ links.email }}">Email</a>{% endif %}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Next-step checklist</h2>
+    <table class="facts">
+      {% for step in checklist %}
+      <tr><td class="label">{{ loop.index }}</td><td class="value wide">{{ step }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="footer-note">
+    <strong>Data provenance:</strong> {{ provenance.source }} · external ID {{ provenance.external_id }} · received {{ provenance.received_at }} · retention {{ provenance.retention }}.<br>
+    {{ footer.disclaimer }}
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+# Second sample client config.
+# Use it with: BRAND_CONFIG=config/clients/coastal-realty.yaml
+# Shows how timezone, currency and digest time are driven by config rather
+# than hard-coded values.
+
+company:
+  name: "Coastal Realty Group"
+  legal_name: "Coastal Realty Group LLC"
+  tagline: "Waterfront homes, answered in minutes"
+  website: "https://coastal-realty.example"
+  phone: "+1 305 555 0142"
+  email: "sales@coastal-realty.example"
+  address: "Miami, FL, USA"
+  logo: "assets/logo.png"
+
+locale:
+  timezone: "America/New_York"
+  currency: "USD"
+  digest_time: "18:00"
+
+colors:
+  primary: "#123B4F"
+  primary_soft: "#E6F0F4"
+  accent: "#1F8A70"
+  hot: "#C0392B"
+  hot_soft: "#FDEDEC"
+  warm: "#B9770E"
+  warm_soft: "#FEF5E7"
+  cold: "#2471A3"
+  cold_soft: "#EBF5FB"
+  text: "#1C2833"
+  muted: "#5D6D7E"
+  border: "#D5DBDB"
+  background: "#F7F9FA"
+
+typography:
+  heading_font: "DejaVu Sans"
+  body_font: "DejaVu Sans"
+
+footer:
+  disclaimer: "This lead brief contains confidential customer information. Share only with the assigned sales team."
+
+scoring:
+  budget_floor: 250000
+  budget_ceiling: 15000000
+  service_areas:
+    - "Miami"
+    - "Fort Lauderdale"
+    - "Boca Raton"
+    - "Palm Beach"

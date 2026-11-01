@@ -1,0 +1,49 @@
+# Replace these placeholders with the client's real brand details.
+# Logo: PNG or SVG, ideally >= 600px wide with a transparent background.
+company:
+  name: "Veiden Real Estate"
+  legal_name: "Veiden Real Estate Pvt Ltd"
+  tagline: "Property enquiries handled in minutes, not days"
+  website: "https://veidenrealestate.com"
+  phone: "+91 80 1234 5678"
+  email: "sales@veidenrealestate.com"
+  address: "Indiranagar, Bengaluru, India"
+  logo: "assets/logo.png"
+
+# Locale is config-driven. Override with BUSINESS_TZ / CURRENCY / DIGEST_TIME.
+locale:
+  timezone: "Asia/Kolkata"
+  currency: "INR"
+  digest_time: "19:30"
+
+colors:
+  primary: "#0F3D5C"
+  primary_soft: "#E8F0F5"
+  accent: "#1F8A70"
+  hot: "#C0392B"
+  hot_soft: "#FDEDEC"
+  warm: "#B9770E"
+  warm_soft: "#FEF5E7"
+  cold: "#2471A3"
+  cold_soft: "#EBF5FB"
+  text: "#1C2833"
+  muted: "#5D6D7E"
+  border: "#D5DBDB"
+  background: "#F7F9FA"
+
+typography:
+  heading_font: "Montserrat"
+  body_font: "Montserrat"
+
+footer:
+  disclaimer: "This lead brief contains confidential customer information. Share only with the assigned sales team."
+
+scoring:
+  # Real-estate budget bands in INR. Used for the "budget fit" signal.
+  budget_floor: 1000000
+  budget_ceiling: 100000000
+  service_areas:
+    - "Bengaluru"
+    - "Mumbai"
+    - "Pune"
+    - "Hyderabad"

@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "WHATSAPP-BUSINESS-1",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "919800000000",
+              "phone_number_id": "PHONE-NUMBER-ID"
+            },
+            "contacts": [
+              {
+                "wa_id": "919876543210",
+                "profile": {
+                  "name": "Rahul Sharma"
+                }
+              }
+            ],
+            "messages": [
+              {
+                "from": "919876543210",
+                "id": "wamid.TEST-3001",
+                "timestamp": "1777000000",
+                "type": "text",
+                "text": {
+                  "body": "Interested in a 3BHK in Powai. Budget 1.2-1.5 Cr, want a site visit this week. Email rahul.sharma@example.com"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

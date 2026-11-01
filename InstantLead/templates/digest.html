@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Daily Lead Digest {{ digest_date }}</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 13mm;
+      @bottom-left { content: "InstantLead daily digest · {{ digest_date }}"; font-size: 7.5pt; color: #7f8c8d; }
+      @bottom-right { content: "Page " counter(page) " of " counter(pages); font-size: 7.5pt; color: #7f8c8d; }
+    }
+    * { box-sizing: border-box; }
+    body { font-family: "DejaVu Sans", sans-serif; color: {{ colors.text }}; font-size: 9pt; line-height: 1.4; margin: 0; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2.5px solid {{ colors.primary }}; padding-bottom: 9px; }
+    .header img { height: 36px; max-width: 200px; }
+    .header .name { font-size: 16pt; font-weight: bold; color: {{ colors.primary }}; }
+    .meta { text-align: right; font-size: 8pt; color: {{ colors.muted }}; line-height: 1.5; }
+    h1 { font-size: 15pt; color: {{ colors.primary }}; margin: 13px 0 8px; letter-spacing: .05em; }
+    .kpis { width: 100%; border-collapse: separate; border-spacing: 6px 0; margin: 6px -6px 10px; }
+    .kpis td { width: 20%; background: {{ colors.background }}; border: 1px solid {{ colors.border }}; border-radius: 6px; padding: 8px 9px; vertical-align: top; }
+    .kpis .n { font-size: 18pt; font-weight: bold; color: {{ colors.primary }}; line-height: 1.1; }
+    .kpis .l { font-size: 7.2pt; text-transform: uppercase; letter-spacing: .06em; color: {{ colors.muted }}; }
+    .kpis .hot .n { color: {{ colors.hot }}; }
+    .kpis .warm .n { color: {{ colors.warm }}; }
+    .kpis .cold .n { color: {{ colors.cold }}; }
+    h2 { font-size: 9pt; text-transform: uppercase; letter-spacing: .08em; color: {{ colors.primary }}; border-bottom: 1px solid {{ colors.border }}; padding-bottom: 3px; margin: 14px 0 5px; }
+    table.leads { width: 100%; border-collapse: collapse; }
+    table.leads th { background: {{ colors.primary }}; color: #fff; text-align: left; font-size: 7.4pt; padding: 5px 5px; }
+    table.leads td { padding: 5px; border-bottom: 1px solid #eef1f2; font-size: 7.8pt; vertical-align: top; }
+    .tag { display: inline-block; padding: 1px 6px; border-radius: 9px; color: #fff; font-size: 6.8pt; font-weight: bold; letter-spacing: .05em; }
+    .hot { background: {{ colors.hot }}; }
+    .warm { background: {{ colors.warm }}; }
+    .cold { background: {{ colors.cold }}; }
+    .muted { color: {{ colors.muted }}; }
+    .empty { padding: 10px; background: {{ colors.background }}; border: 1px dashed {{ colors.border }}; color: {{ colors.muted }}; font-size: 8.5pt; }
+    .sources { font-size: 8pt; color: {{ colors.muted }}; margin-top: 4px; }
+    .footer { margin-top: 16px; border-top: 1px solid {{ colors.border }}; padding-top: 7px; font-size: 7.2pt; color: {{ colors.muted }}; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      {% if company.logo %}<img src="{{ company.logo }}" alt="{{ company.name }}">{% else %}<div class="name">{{ company.name }}</div>{% endif %}
+    </div>
+    <div class="meta">
+      <strong>DAILY LEAD DIGEST</strong><br>
+      {{ digest_date }}<br>
+      Generated {{ generated_at }}
+    </div>
+  </div>
+
+  <h1>Sales summary</h1>
+  <table class="kpis">
+    <tr>
+      <td><div class="n">{{ stats.total }}</div><div class="l">Total leads</div></td>
+      <td class="hot"><div class="n">{{ stats.hot }}</div><div class="l">Hot</div></td>
+      <td class="warm"><div class="n">{{ stats.warm }}</div><div class="l">Warm</div></td>
+      <td class="cold"><div class="n">{{ stats.cold }}</div><div class="l">Cold</div></td>
+      <td><div class="n">{{ stats.uncontacted_hot }}</div><div class="l">Hot uncontacted</div></td>
+    </tr>
+  </table>
+  <div class="sources">
+    Meetings booked: <strong>{{ stats.meetings }}</strong> ·
+    Average score: <strong>{{ stats.avg_score }}</strong> ·
+    Sources: {{ stats.sources }}
+  </div>
+
+  <h2>Hot leads — act first</h2>
+  {% if hot %}
+  <table class="leads">
+    <thead><tr><th>Lead</th><th>Contact</th><th>Requirement</th><th>Budget</th><th>Timeline</th><th>Source</th><th>Status</th><th>Brief</th></tr></thead>
+    <tbody>
+      {% for lead in hot %}
+      <tr>
+        <td><strong>{{ lead.name }}</strong><br><span class="muted">{{ lead.lead_id }} · {{ lead.received_at }}</span></td>
+        <td>{{ lead.phone }}<br><span class="muted">{{ lead.email }}</span></td>
+        <td>{{ lead.property_type }}{% if lead.location != 'Not provided' %}<br>{{ lead.location }}{% endif %}</td>
+        <td>{{ lead.budget }}</td>
+        <td>{{ lead.timeline }}</td>
+        <td>{{ lead.source }}</td>
+        <td>{{ lead.status }}</td>
+        <td>{% if lead.pdf_link %}<a href="{{ lead.pdf_link }}">PDF</a>{% else %}<span class="muted">Attached</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="empty">No HOT leads today.</div>{% endif %}
+
+  <h2>Warm leads</h2>
+  {% if warm %}
+  <table class="leads">
+    <thead><tr><th>Lead</th><th>Contact</th><th>Requirement</th><th>Budget</th><th>Timeline</th><th>Source</th><th>Status</th><th>Brief</th></tr></thead>
+    <tbody>
+      {% for lead in warm %}
+      <tr>
+        <td><strong>{{ lead.name }}</strong><br><span class="muted">{{ lead.lead_id }} · {{ lead.received_at }}</span></td>
+        <td>{{ lead.phone }}<br><span class="muted">{{ lead.email }}</span></td>
+        <td>{{ lead.property_type }}{% if lead.location != 'Not provided' %}<br>{{ lead.location }}{% endif %}</td>
+        <td>{{ lead.budget }}</td>
+        <td>{{ lead.timeline }}</td>
+        <td>{{ lead.source }}</td>
+        <td>{{ lead.status }}</td>
+        <td>{% if lead.pdf_link %}<a href="{{ lead.pdf_link }}">PDF</a>{% else %}<span class="muted">Digest</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="empty">No WARM leads today.</div>{% endif %}
+
+  <h2>Cold leads</h2>
+  {% if cold %}
+  <table class="leads">
+    <thead><tr><th>Lead</th><th>Requirement</th><th>Budget</th><th>Source</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for lead in cold %}
+      <tr>
+        <td><strong>{{ lead.name }}</strong><br><span class="muted">{{ lead.lead_id }} · {{ lead.received_at }}</span></td>
+        <td>{{ lead.property_type }}{% if lead.location != 'Not provided' %}<br>{{ lead.location }}{% endif %}</td>
+        <td>{{ lead.budget }}</td>
+        <td>{{ lead.source }}</td>
+        <td>{{ lead.status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<div class="empty">No COLD leads today.</div>{% endif %}
+
+  <div class="footer">
+    {{ company.name }} · {{ company.phone }} · {{ company.email }} · {{ company.website }}<br>
+    {{ footer.disclaimer }}
+  </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-10-23T11:44:50+00:00",
+  "leads": 100,
+  "seed": 42,
+  "processed": 100,
+  "failures": 0,
+  "processing": {
+    "total_seconds": 27.694,
+    "mean_ms_per_lead": 276.93,
+    "p50_ms_per_lead": 320.94,
+    "p95_ms_per_lead": 464.54,
+    "max_ms_per_lead": 834.44,
+    "throughput_per_second": 3.61
+  },
+  "accuracy": {
+    "tier_correct": 100,
+    "tier_accuracy": 1.0,
+    "spam_correct": 100,
+    "spam_accuracy": 1.0,
+    "confusion": {
+      "HOT": {
+        "HOT": 40
+      },
+      "WARM": {
+        "WARM": 35
+      },
+      "COLD": {
+        "COLD": 25
+      }
+    }
+  },
+  "cost": {
+    "total_usd": 0.0,
+    "per_lead_usd": 0.0,
+    "note": "Rules-only/free-model run; no paid API calls were made."
+  },
+  "first_reply": {
+    "total": 90,
+    "pending": 0,
+    "sent": 45,
+    "approved_manual": 45,
+    "rejected": 0,
+    "median_draft_seconds": 0.0,
+    "median_response_seconds": 12.5,
+    "p90_response_seconds": 24,
+    "within_sla": 90
+  },
+  "samples": [
+    {
+      "source": "form",
+      "expected": "HOT",
+      "actual": "HOT",
+      "score": 97
+    },
+    {
+      "source": "whatsapp",
+      "expected": "HOT",
+      "actual": "HOT",
+      "score": 88
+    },
+    {
+      "source": "google_form",
+      "expected": "HOT",
+      "actual": "HOT",
+      "score": 97
+    },
+    {
+      "source": "instagram",
+      "expected": "HOT",
+      "actual": "HOT",
+      "score": 88
+    },
+    {
+      "source": "email",
+      "expected": "HOT",
+      "actual": "HOT",
+      "score": 95
+    }
+  ]
+}

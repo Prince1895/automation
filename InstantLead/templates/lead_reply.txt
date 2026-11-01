@@ -1,0 +1,13 @@
+Hi {{ name }},
+
+Thanks for your enquiry{% if property_type != "Not provided" %} about a {{ property_type }}{% endif %}{% if location != "Not provided" %} in {{ location }}{% endif %}.
+
+{% if tier == "HOT" %}A member of our team will call you within {{ reply_sla_minutes }} minutes to confirm the details and the next available visit slot.{% else %}A member of our team will contact you shortly to understand your requirements and share the best matching options.{% endif %}
+
+{% if phone != "Not provided" or email != "Not provided" %}If it is easier, reply to this email{% if phone != "Not provided" %} or call us on {{ company.phone or phone }}{% endif %} and we will pick it up from there.
+{% endif %}
+Best regards,
+{{ company.name }}{% if company.phone %}
+{{ company.phone }}{% endif %}
+
+Reference: {{ lead_id }}

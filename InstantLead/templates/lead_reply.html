@@ -1,0 +1,22 @@
+<div style="font-family:{{ typography.body_font if typography else 'Arial, sans-serif' }};color:{{ colors.text }};line-height:1.55;max-width:560px;">
+  <p>Hi {{ name }},</p>
+  <p>
+    Thanks for your enquiry{% if property_type != "Not provided" %} about a {{ property_type }}{% endif %}{% if location != "Not provided" %} in {{ location }}{% endif %}.
+  </p>
+  {% if tier == "HOT" %}
+  <p>
+    A member of our team will call you within {{ reply_sla_minutes }} minutes to confirm the details and the next available visit slot.
+  </p>
+  {% else %}
+  <p>
+    A member of our team will contact you shortly to understand your requirements and share the best matching options.
+  </p>
+  {% endif %}
+  {% if phone != "Not provided" or email != "Not provided" %}
+  <p>
+    If it is easier, reply to this email{% if phone != "Not provided" %} or call us on {{ company.phone or phone }}{% endif %} and we will pick it up from there.
+  </p>
+  {% endif %}
+  <p>Best regards,<br>{{ company.name }}{% if company.phone %}<br>{{ company.phone }}{% endif %}</p>
+  <p style="font-size:11px;color:{{ colors.muted }};">Reference: {{ lead_id }}</p>
+</div>

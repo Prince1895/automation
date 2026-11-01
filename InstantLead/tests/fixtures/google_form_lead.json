@@ -1,0 +1,13 @@
+{
+  "response_id": "GFORM-2001",
+  "submitted_at": "2026-10-23T12:10:00+05:30",
+  "respondentEmail": "anita.rao@example.com",
+  "answers": {
+    "Full name": "Anita Rao",
+    "Contact number": "+91 91234 56789",
+    "Which property are you looking for?": "2BHK",
+    "Preferred location": "Whitefield, Bengaluru",
+    "When do you plan to buy?": "2-3 months",
+    "Tell us about your requirement": "Please share the price and availability for a 2BHK. Still comparing projects."
+  }
+}

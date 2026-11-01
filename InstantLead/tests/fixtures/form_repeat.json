@@ -1,0 +1,15 @@
+{
+  "id": "FORM-1002",
+  "submitted_at": "2026-10-24T11:05:00+05:30",
+  "data": {
+    "name": "Rahul Sharma",
+    "phone": "9876543210",
+    "email": "rahul.sharma@example.com",
+    "property_type": "4BHK",
+    "location": "Andheri, Mumbai",
+    "budget": "2-2.5 Cr",
+    "timeline": "1-3 months",
+    "message": "Follow-up: also open to a 4BHK in Andheri. Please share options.",
+    "consent": "yes"
+  }
+}

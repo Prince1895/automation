@@ -1,0 +1,13 @@
+Daily lead digest - {{ digest_date }}
+
+Total: {{ stats.total }} | HOT: {{ stats.hot }} | WARM: {{ stats.warm }} | COLD: {{ stats.cold }}
+Meetings booked: {{ stats.meetings }} | Average score: {{ stats.avg_score }}
+HOT uncontacted: {{ stats.uncontacted_hot }}
+
+HOT leads:
+{% for lead in hot %}- {{ lead.name }} | {{ lead.phone }} | {{ lead.property_type }} {{ lead.location }} | {{ lead.budget }} | {{ lead.timeline }} | score {{ lead.score }}
+{% else %}- None
+{% endfor %}
+Full briefs and the COLD list are in the attached PDF.
+
+Confidential customer data. Share only with the assigned sales team.

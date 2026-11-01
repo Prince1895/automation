@@ -1,0 +1,11 @@
+.env
+.venv/
+.tmp/
+logs/*.jsonl
+__pycache__/
+*.pyc
+.pytest_cache/
+.git/
+.gitignore
+tests/
+benchmarks/

@@ -1,0 +1,8 @@
+{
+  "message_id": "EMAIL-TEST-5001",
+  "from_name": "Vikram Mehta",
+  "from_email": "vikram.mehta@example.com",
+  "subject": "Enquiry: 4BHK in Hyderabad",
+  "received_at": "2026-10-23T09:45:00+05:30",
+  "body": "Hi team,\n\nI am looking for a 4BHK villa in Kondapur, Hyderabad. Budget is 3-3.5 Cr and I want to schedule a site visit this month. You can reach me on +91 90123 45678.\n\nThanks,\nVikram"
+}

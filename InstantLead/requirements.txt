@@ -1,0 +1,14 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+jinja2>=3.1,<4
+pyyaml>=6.0,<7
+python-dotenv>=1.0,<2
+requests>=2.31,<3
+google-api-python-client>=2.100,<3
+google-auth>=2.23,<3
+google-auth-oauthlib>=1.1,<2
+google-auth-httplib2>=0.1,<1
+weasyprint>=62,<70
+pillow>=10,<12
+pytest>=8,<9
+httpx>=0.27,<1
