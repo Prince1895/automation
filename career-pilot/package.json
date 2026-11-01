@@ -1,0 +1,35 @@
+{
+  "name": "career-pilot",
+  "version": "1.0.0",
+  "main": "src/main.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.109.0",
+    "@types/imap-simple": "^4.2.10",
+    "@types/nodemailer": "^8.0.2",
+    "@types/pg": "^8.23.1",
+    "axios": "^1.21.0",
+    "dotenv": "^18.0.9",
+    "googleapis": "^178.0.0",
+    "imap-simple": "^5.1.0",
+    "node-cron": "^4.6.0",
+    "nodemailer": "^10.2.1",
+    "pg": "^8.23.1",
+    "playwright": "^1.64.1",
+    "playwright-extra": "^4.3.6",
+    "puppeteer": "^24.43.1",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
